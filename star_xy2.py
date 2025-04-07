@@ -11,8 +11,10 @@ if len(sys.argv) > 1:
         N = int(number)
     except ValueError:
         print(f"Ошибка: '{number}' не является числом.")
+        exit(1)
 else:
     print("Аргументы не переданы.")
+    exit(1)
 
 # Параметры
 T = 100e-6  # Период, 100 мкс
@@ -127,7 +129,7 @@ def get_real_phases(phases):
 def plot_signal(t_vals, original_signal, approx_signal, label):
     plt.figure(figsize=(10, 6))
     plt.plot(t_vals * 1e6, original_signal, linestyle='--', label=f"Оригинал {label}")
-    #plt.plot(t_vals * 1e6, approx_signal, label=f"Фурье: {label}")
+    plt.plot(t_vals * 1e6, approx_signal, label=f"Фурье: {label}")
     plt.xlabel("Время [мкс]")
     plt.ylabel("Амплитуда")
     plt.legend()
@@ -139,7 +141,7 @@ def plot_signal(t_vals, original_signal, approx_signal, label):
 def plot_xy(original_x, original_y, approx_x, approx_y):
     plt.figure(figsize=(10, 6))
     plt.plot(original_x, original_y, linestyle='--', label="Оригинал: y(x)")
-    #plt.plot(approx_x, approx_y, label=f"Фурье: y(x), N={N}")
+    plt.plot(approx_x, approx_y, label=f"Фурье: y(x), N={N}")
     plt.xlabel("x(t)")
     plt.ylabel("y(t)")
     plt.axis("equal")  # Сделать оси одинаковыми, чтобы фигура не была искажена
